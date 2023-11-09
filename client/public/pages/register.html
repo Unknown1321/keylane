@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="style/register.css">
+    <title>Register</title>
+</head>
+<body>
+    
+    <div id="navbar"></div>
+
+    <div class="register">
+        <span class="registerTitle">Register</span>
+        <form class="registerForm" onsubmit="handleSubmit(event)">
+            <label>Username</label>
+            <input type="text" class="registerInput" placeholder="Enter your username..." onchange="setUsername(this.value)"/>
+            <label>Email</label>
+            <input type="text" class="registerInput" placeholder="Enter your email..." onchange="setEmail(this.value)"/>
+            <label>Password</label>
+            <input type="password" class="registerInput" placeholder="Enter your password..." onchange="setPassword(this.value)"/>
+            <button class="registerButton" type="submit">Register</button>
+        </form>
+        <button class="registerLoginButton">
+            <a class="link" href="/login">Login</a>
+        </button>
+        <span id="error" style="color: red; margin-top: 10px;"></span>
+    </div>
+
+    <script>
+
+        let username = "";
+        let email = "";
+        let password = "";
+
+        function setUsername(value) {
+            username = value;
+        }
+
+        function setEmail(value) {
+            email = value;
+        }
+
+        function setPassword(value) {
+            password = value;
+        }
+
+        const handleSubmit = async (e) => {
+            e.preventDefault();
+            const errorSpan = document.getElementById("error");
+            errorSpan.textContent = "";
+
+             
+             const res = await axios.post("/auth/register", {
+               username,
+               email,
+               password,
+             });
+ 
+        
+            const success = true;
+            if (success) {
+                window.location.href = "/client/login.html";
+            } else {
+                errorSpan.textContent = "Something went wrong!";
+            }
+        }
+    </script>
+
+<script src="/pages/main.js"></script>
+</body>
+</html>

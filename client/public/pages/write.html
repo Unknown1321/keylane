@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Write</title>
+    <link rel="stylesheet" type="text/css" href="style/write.css">
+</head>
+<body>
+    <div id="navbar"></div>
+
+    <div class="write">
+        <form class="writeForm" onsubmit="handleSubmit(event)">
+            <div class="writeFormGroup">
+                <label for="fileInput">
+                    <i class="writeIcon fas fa-plus"></i>
+                </label>
+                <input type="file" id="fileInput" style="display: none;" onchange="setFile(event)"/>
+                <input type="text" placeholder="Title of your task" class="writeInput" autofocus="true" onchange="setTitle(event)"/>
+            </div>
+            <div class="writeFormGroup">
+                <textarea placeholder="Which categories..." class="writeInput writeCategories" onchange="setCategories(event)"></textarea>
+            </div>
+            <div class="writeFormGroup">
+                <textarea placeholder="Write what your task was about..." class="writeInput writeText" onchange="setDesc(event)"></textarea>
+            </div>
+            <button class="writeSubmit" type="submit">Publish</button>
+        </form>
+    </div>
+    <script>
+        let title = "";
+        let desc = "";
+        let categories = "";
+        let file = null;
+        
+        function setTitle(event) {
+            title = event.target.value;
+        }
+
+        function setDesc(event) {
+            desc = event.target.value;
+        }
+
+        function setCategories(event) {
+            categories = event.target.value;
+        }
+
+        function setFile(event) {
+            file = event.target.files[0];
+
+            // Display the selected image
+            if (file) {
+                const img = document.createElement("img");
+                img.classList.add("writeImg");
+                img.src = URL.createObjectURL(file);
+                const write = document.querySelector(".write");
+                write.insertBefore(img, write.firstChild);
+            }
+        }
+
+        function handleSubmit(event) {
+            event.preventDefault();
+            const newPost = {
+                username: "", // Add your username retrieval logic here
+                title,
+                categories,
+                desc,
+            };
+
+            if (file) {
+                const data = new FormData();
+                const filename = Date.now() + file.name;
+                data.append("name", filename);
+                data.append("file", file);
+                newPost.photo = filename;
+
+                // You can replace the following with your actual axios logic
+                // Assuming you have the necessary axios logic
+                axios.post("/upload", data)
+                     .then(() => {
+                         // Do something after successful upload
+                     })
+                     .catch((err) => {
+                         // Handle upload error
+                     });
+            }
+            
+            // You can replace the following with your actual axios logic
+            // Assuming you have the necessary axios logic
+             axios.post("/posts", newPost)
+                 .then((res) => {
+                     window.location.href = "/post/" + res.data._id;
+                 })
+                 .catch((err) => {
+                     // Handle post creation error
+                 });
+        }
+    </script>
+
+<script src="/pages/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" type="text/css" href="style/login.css">
+</head>
+<body>
+
+    <div id="navbar"></div>
+
+
+    <div class="login">
+        <span class="loginTitle">Login</span>
+        <form class="loginForm" onsubmit="handleSubmit(event)">
+            <label for="username">Username</label>
+            <input
+                type="text"
+                class="loginInput"
+                placeholder="Enter your username..."
+                id="username"
+            />
+            <label for="password">Password</label>
+            <input
+                type="password"
+                class="loginInput"
+                placeholder="Enter your password..."
+                id="password"
+            />
+            <button class="loginButton" type="submit" disabled>
+                Login
+            </button>
+        </form>
+        <button class="loginRegisterButton">
+            <a class="link" href="/client/register.html">Register</a>
+        </button>
+    </div>
+
+    <script>
+        const handleSubmit = async (e) => {
+            e.preventDefault();
+            // Handle form submission using JavaScript
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+
+            // Send a request to the login API endpoint
+            const response = await fetch("/auth/login", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    username: username,
+                    password: password,
+                }),
+            });
+
+            if (response.ok) {
+                // Login was successful
+                const data = await response.json();
+                // Handle the data as needed
+            } else {
+                // Login failed
+                // Handle errors or show error messages
+            }
+        };
+    </script>
+
+<script src="/pages/main.js"></script>
+</body>
+</html>

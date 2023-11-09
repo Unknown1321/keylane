@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Keylane</title> 
+    <!-- Include your CSS files here -->
+    <link rel="stylesheet" type="text/css" href="style/home.css"> 
+    <link rel="stylesheet" type="text/css" href="style/header.css"> 
+    <link rel="stylesheet" type="text/css" href="style/sidebar.css">
+    <link rel="stylesheet" type="text/css" href="style/posts.css">
+    <link rel="stylesheet" type="text/css" href="style/post.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+    <!-- Include additional CSS or JavaScript files if needed -->
+</head>
+<body>
+    <div id="navbar"></div>
+
+
+    <!-- Add the header HTML structure here -->
+    <div class="header">
+        <div class="headerTitles">
+            <span class="headerTitleSm">Finished Tasks</span>
+            <span class="headerTitleLg">STATUS</span>
+        </div>
+        <img
+            class="headerImg"
+            src="https://workablehr.s3.amazonaws.com/uploads/photos/301908/67c881a19cebf7c23ef421f7dd44008d.png"
+            alt=""
+        />
+    </div>
+
+     <!-- Container for posts -->
+     <div class="posts" id="postsContainer">
+        <!-- Assuming this is inside your loop that iterates over fetched posts -->
+
+    <!-- Conditionally render the photo -->
+    {post.photo && <img class="postImg" src={`http://localhost:5000/images/${post.photo}`} alt="" />}
+
+    <div class="postInfo">
+        <!-- Use Link component for navigation -->
+        <a href={`/posts/${post._id}`} class="link">
+            <span class="postTitle">{post.title}</span>
+        </a>
+        <div class="postCategories">{post.categories}</div>
+        <span class="postDate">{new Date(post.createdAt).toDateString()}</span>
+    </div>
+
+    <p class="postDesc">{post.desc}</p>
+
+
+    </div>
+
+    <!-- Include the sidebar HTML structure here -->
+    <div class="sidebar">
+        <div class="sidebarItem">
+            <span class="sidebarTitle">ABOUT US</span>
+            <img
+                src="https://careers.keylane.com/wp-content/uploads/2022/11/keylane-logo.png"
+                alt=""
+            />
+           
+        </div>
+        <div class="sidebarItem">
+            <span class="sidebarTitle">CATEGORIES</span>
+            <ul class="sidebarList" id="categoryList">
+                
+            </ul>
+        </div>
+        
+        <div class="sidebarItem">
+            <span class="sidebarTitle">FOLLOW US</span>
+            <div class="sidebarSocial">
+                <i class="sidebarIcon fab fa-facebook-square"></i>
+                <i class="sidebarIcon fab fa-twitter-square"></i>
+                <i class="sidebarIcon fab fa-pinterest-square"></i>
+                <i class="sidebarIcon fab fa-instagram-square"></i>
+            </div>
+        </div>
+    </div>
+    
+
+    <!-- Include your JavaScript file here -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
+    <script>
+
+    const socket = io('http://localhost:5000/');
+    const categoriesFetch = 'http://localhost:5000/api/categories';
+
+    const handleCategoriesResponse = (categories) => {
+    const categoryList = document.getElementById('categoryList');
+
+    // Clear existing list items
+    categoryList.innerHTML = '';
+
+    // Loop through categories and create list items
+    categories.forEach(category => {
+        const listItem = document.createElement('li');
+        listItem.className = 'sidebarListItem';
+
+        const link = document.createElement('a');
+        link.href = `/?category=${category.name}`;
+        link.textContent = category.name;
+
+        listItem.appendChild(link);
+        categoryList.appendChild(listItem);
+    });
+};
+
+const getCategories = async () => {
+    try {
+        const response = await fetch(categoriesFetch);
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        const data = await response.json();
+        handleCategoriesResponse(data);
+    } catch (error) {
+        console.error('Error fetching categories:', error);
+    }
+};
+
+getCategories();
+
+
+
+
+
+    
+    const postsFetch = 'http://localhost:5000/api/posts';
+
+    async function fetchPosts() {
+        try {
+            const response = await fetch(postsFetch);
+            const data = await response.json();
+            renderPosts(data);
+        } catch (error) {
+            console.error('Error fetching posts:', error);
+        }
+    }
+
+    function renderPosts(posts) {
+        const postsContainer = document.getElementById("postsContainer");
+        postsContainer.innerHTML = "";
+
+        if (posts.length > 0) {
+            posts.forEach(post => {
+                const postElement = document.createElement("div");
+                postElement.className = "post";
+
+                // Create the image element if there is a photo
+                if (post.photo) {
+                    const imgElement = document.createElement("img");
+                    imgElement.className = "postImg";
+                    imgElement.src = `http://localhost:5000/images/${post.photo}`;
+                    imgElement.alt = "";
+                    postElement.appendChild(imgElement);
+                }
+
+                const postInfoElement = document.createElement("div");
+                postInfoElement.className = "postInfo";
+
+                // Create the link element for navigation
+                const linkElement = document.createElement("a");
+                linkElement.href = `/posts/${post._id}`;
+                linkElement.className = "link";
+
+                // Create the title element
+                const titleElement = document.createElement("span");
+                titleElement.className = "postTitle";
+                titleElement.textContent = post.title;
+
+                // Append title to link
+                linkElement.appendChild(titleElement);
+
+                // Append link to post info
+                postInfoElement.appendChild(linkElement);
+
+                // Create categories element
+                const categoriesElement = document.createElement("div");
+                categoriesElement.className = "postCats";
+                const categoriesSpan = document.createElement("span");
+                categoriesSpan.className = "postCategories";
+                categoriesSpan.textContent = post.categories;
+                categoriesElement.appendChild(categoriesSpan);
+
+                // Create date element
+                const dateElement = document.createElement("span");
+                dateElement.className = "postDate";
+                dateElement.textContent = new Date(post.createdAt).toDateString();
+
+                // Create description element
+                const descElement = document.createElement("p");
+                descElement.className = "postDesc";
+                descElement.textContent = post.desc;
+
+                // Append everything to post element
+                postInfoElement.appendChild(categoriesElement);
+                postInfoElement.appendChild(dateElement);
+                postElement.appendChild(postInfoElement);
+                postElement.appendChild(descElement);
+
+                // Append post element to container
+                postsContainer.appendChild(postElement);
+                
+            });
+        } else {
+            postsContainer.innerHTML = "<p>No posts available.</p>";
+        }
+    }
+
+    // Fetch posts when the page loads
+    fetchPosts();
+</script>
+<script src="/pages/main.js"></script>
+    
+</body>
+</html>
+
+
