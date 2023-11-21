@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="style/register.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
     <title>Register</title>
 </head>
 <body>
@@ -27,46 +29,9 @@
         <span id="error" style="color: red; margin-top: 10px;"></span>
     </div>
 
-    <script>
-
-        let username = "";
-        let email = "";
-        let password = "";
-
-        function setUsername(value) {
-            username = value;
-        }
-
-        function setEmail(value) {
-            email = value;
-        }
-
-        function setPassword(value) {
-            password = value;
-        }
-
-        const handleSubmit = async (e) => {
-            e.preventDefault();
-            const errorSpan = document.getElementById("error");
-            errorSpan.textContent = "";
-
-             
-             const res = await axios.post("/auth/register", {
-               username,
-               email,
-               password,
-             });
- 
-        
-            const success = true;
-            if (success) {
-                window.location.href = "/client/login.html";
-            } else {
-                errorSpan.textContent = "Something went wrong!";
-            }
-        }
-    </script>
-
-<script src="/pages/main.js"></script>
+    
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="/pages/register.js"></script>
+    <script src="/pages/main.js"></script>
 </body>
 </html>

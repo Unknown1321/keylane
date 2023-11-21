@@ -39,4 +39,14 @@ router.post("/login", async (req, res) => {
   }
 });
 
+router.get("/login", (req, res) => {
+  const auth = !!req.session.user;
+  res.status(200).send({ auth, user: req.session.user });
+});
+
+router.get("/logout", (req, res) => {
+  req.session.destroy();
+  res.status(200).send({ message: "you are logged out" });
+});
+
 export default router;

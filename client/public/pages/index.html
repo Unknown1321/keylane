@@ -11,6 +11,7 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 
+
     <!-- Include additional CSS or JavaScript files if needed -->
 </head>
 <body>
@@ -33,9 +34,6 @@
      <!-- Container for posts -->
      <div class="posts" id="postsContainer">
         <!-- Assuming this is inside your loop that iterates over fetched posts -->
-
-    <!-- Conditionally render the photo -->
-    {post.photo && <img class="postImg" src={`http://localhost:5000/images/${post.photo}`} alt="" />}
 
     <div class="postInfo">
         <!-- Use Link component for navigation -->

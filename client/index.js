@@ -1,6 +1,7 @@
 import express from "express";
 import { io } from 'socket.io-client';
 import path from "path";
+import axis from 'axios';
 
 const app = express();
 const socket = io('http://localhost:5000'); // Server URL for socket 
@@ -38,6 +39,16 @@ app.get("/todo", (req, res) => {
 app.get("/write", (req, res) => {
     res.sendFile(path.resolve("public/pages/write.html"));
   });
+
+ /* Single Post Page */
+app.get("/posts", (req, res) => {
+  res.sendFile(path.resolve("public/pages/singlePost.html"));
+}); 
+
+ /* Singe Post & id Page */
+ app.get("/posts/:postId", (req, res) => {
+  res.sendFile(path.resolve("public/pages/singlePost.html"));
+}); 
 
 /* Calculation Page */
 app.get("/calculation", (req, res) => {

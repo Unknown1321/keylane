@@ -47,7 +47,7 @@ router.put("/:id", async (req, res) => {
     }
   });
   
- // DELETE TODOS
+ // DELETE Experiences
 router.delete("/:id", async (req, res) => {
     try {
       const experiences = await Experiences.findById(req.params.id);

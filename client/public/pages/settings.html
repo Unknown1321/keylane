@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="style/settings.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
 
     <!-- Include your other stylesheets or scripts if needed -->
     <title>Settings</title>
@@ -20,13 +22,13 @@
                 <label>Username</label>
                 <input
                     type="text"
-                    placeholder="{user.username}"
+                    value="{user.username}"
                     onchange="setUsername(event.target.value)"
                 />
                 <label>Email</label>
                 <input
                     type="email"
-                    placeholder="{user.email}"
+                    value="{user.email}"
                     onchange="setEmail(event.target.value)"
                 />
                 <label>Password</label>
@@ -36,24 +38,13 @@
                 />
                 <button class="settingsSubmit" type="submit">Update</button>
                 <span
-                    style="color: green; text-align: center; margin-top: 20px; display: {success ? 'block' : 'none'}"
-                >
+                    style="color: green; text-align: center; margin-top: 20px; display: ${success ? 'block' : 'none'}">
                     Profile has been updated...
                 </span>
             </form>
         </div>
         
-        <script>
-            const setUsername = (value) => setUsername(value);
-            const setEmail = (value) => setEmail(value);
-            const setPassword = (value) => setPassword(value);
-
-            const handleSubmit = async (e) => {
-                e.preventDefault();
-                // Assuming you have a function to handle form submission in an external script
-                handleFormSubmit();
-            };
-        </script>
+        <script src="/pages/settings.js"></script>
         <script src="/pages/main.js"></script>
     </div>
 </body>

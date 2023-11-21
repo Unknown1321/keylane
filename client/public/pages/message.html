@@ -3,28 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chat</title>
-    <link rel="stylesheet" type="text/css" href="style/chat.css">
+    <title>Today's Message</title>
+    <link rel="stylesheet" type="text/css" href="style/message.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
 </head>
 <body>
     <div id="navbar"></div>
-
-    <style>
-        .Chat {
-            text-align: center;
-        }
-
-        .received-message {
-            border: 1px solid #ccc;
-            padding: 10px;
-            margin: 10px;
-        }
-
-        .delete-button {
-            cursor: pointer;
-            color: red;
-        }
-    </style>
 </head>
 <body>
     <div class="Chat">
@@ -37,78 +22,7 @@
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
-    <script>
-
-        const socket = io('http://localhost:5000/');
-        const chatUrl = 'http://localhost:5000/api/chats';
-
-        const messageForm = document.getElementById('messageForm');
-        const messageInput = document.getElementById('messageInput');
-        const receivedMessagesContainer = document.getElementById('receivedMessages');
-
-        const receivedMessages = [];
-
-        messageForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const message = messageInput.value;
-            socket.emit('message', message);
-            messageInput.value = '';
-        });
-
-        function handleDeleteMessage(chatId) {
-            try {
-                fetch(`${chatUrl}/${chatId}`, {
-                    method: 'DELETE'
-                })
-                .then(() => {
-                    receivedMessages = receivedMessages.filter(message => message._id !== chatId);
-                    renderReceivedMessages();
-                })
-                .catch(error => {
-                    console.error('Error deleting message:', error);
-                });
-            } catch (error) {
-                console.error('Error deleting message:', error);
-            }
-        }
-
-        function renderReceivedMessages() {
-            receivedMessagesContainer.innerHTML = '';
-
-            receivedMessages.forEach(message => {
-                const messageElement = document.createElement('div');
-                messageElement.className = 'received-message';
-
-                const textElement = document.createElement('h2');
-                textElement.textContent = message.text;
-
-                const deleteButton = document.createElement('button');
-                deleteButton.className = 'delete-button';
-                deleteButton.textContent = 'Delete';
-                deleteButton.addEventListener('click', () => handleDeleteMessage(message._id));
-
-                messageElement.appendChild(textElement);
-                messageElement.appendChild(deleteButton);
-                receivedMessagesContainer.appendChild(messageElement);
-            });
-        }
-
-        // Fetch previous chat messages from the server API
-        fetch(chatUrl)
-        .then(response => response.json())
-        .then(messages => {
-            receivedMessages.push(...messages);
-            renderReceivedMessages();
-        })
-        .catch(error => console.error('Fetch error:', error));
-
-        // Listen for new messages from the server
-        socket.on('message_receiver', newMessage => {
-            receivedMessages.push(newMessage);
-            renderReceivedMessages();
-        });
-    </script>
-    
+    <script src="/pages/message.js"></script>
     <script src="/pages/main.js"></script>
 </body>
 </html>

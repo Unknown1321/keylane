@@ -1,4 +1,19 @@
 .Chat {
+  text-align: center;
+}
+
+.received-message {
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin: 10px;
+}
+
+.delete-button {
+  cursor: pointer;
+  color: red;
+}
+
+.Chat {
     display: flex;
     flex-direction: column;
     align-items: center;

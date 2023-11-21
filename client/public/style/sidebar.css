@@ -52,10 +52,6 @@
     cursor: pointer;
   }
   
-  .sidebarListItem:not(:last-child) {
-    border-bottom: 1px solid #a7a4a4;
-  }
-  
   .sidebarSocial {
     margin-top: 15px;
     width: 250px;
@@ -67,4 +63,9 @@
   .sidebarIcon {
     font-size: 16px;
     margin-left: 10px;
+  }
+
+  a {
+    text-decoration: none;
+    color: black;
   }

@@ -174,3 +174,46 @@
 	margin-bottom: 10px;
   }
   
+ 
+        .Todo {
+            text-align: center;
+        }
+
+        .todo {
+            display: flex;
+            align-items: center;
+            margin: 10px;
+            border: 1px solid #ccc;
+            padding: 10px;
+        }
+
+        .is-complete {
+            text-decoration: line-through;
+        }
+
+        .delete-todo {
+            cursor: pointer;
+            margin-left: 10px;
+        }
+
+        .addPopup {
+            cursor: pointer;
+            font-size: 24px;
+        }
+
+        .popup {
+            display: none;
+            position: absolute;
+            background: #fff;
+            width: 300px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .closePopup {
+            cursor: pointer;
+            float: right;
+        }
+    

@@ -34,5 +34,21 @@
   .about-container ul {
     margin-bottom: 20px;
   }
+
+ 
   
+  /* Add a black background color to the top navigation bar */
+.searchAbout {
+  overflow: hidden;
+  margin-top: 40px;
+}
+
+/* Style the search box inside the navigation bar */
+.searchAbout input[type=text] {
+      width: 25%;
+      padding: 6px;
+      margin-right: 16px;
+      font-size: 17px;
+}
+
   

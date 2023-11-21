@@ -51,6 +51,7 @@
  .workTitle{
   text-align: center;
   font-size: 25px;
+  margin-bottom: -60px;
  }
   .workExperience {
     min-height: 30vh;
@@ -80,10 +81,12 @@
   }
     .workButton {
       border-radius: .25rem;
-      background: orange;
+      background: #cb9532;
       color: white;
       box-shadow: 0 .75rem .5rem -.5rem hsl(0 50% 80%);
       padding: 10px;
+      height: 40px;
+      margin-top: 0.5%;
     }
   
 
