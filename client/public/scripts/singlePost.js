@@ -76,7 +76,7 @@ const redirectToAuthorPage = (username) => {
 };
 
 const redirectToEditPage = (postId) => {
-  window.location.href = `/write?post=${postId}`;
+  window.location.href = `/updatePost?post=${postId}`;
 };
 
 const deletePost = async (postId, username) => {

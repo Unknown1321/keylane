@@ -23,7 +23,6 @@ router.put("/:id", async (req, res) => {
   }
 });
 
-//DELETE
 // DELETE POST
 router.delete("/:id", async (req, res) => {
   try {

@@ -40,6 +40,11 @@ app.get("/write", (req, res) => {
     res.sendFile(path.resolve("public/pages/write.html"));
   });
 
+/* Update Page */
+app.get("/updatePost", (req, res) => {
+  res.sendFile(path.resolve("public/pages/updatePost.html"));
+});
+
  /* Single Post Page */
 app.get("/posts", (req, res) => {
   res.sendFile(path.resolve("public/pages/singlePost.html"));

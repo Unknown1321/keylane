@@ -16,6 +16,7 @@ router.post("/", async (req, res) => {
 
 // UPDATE POST
 router.put("/:id", async (req, res) => {
+  console.log(req.params.id);
   try {
     const updatedPost = await Post.findByIdAndUpdate(
       req.params.id,
@@ -29,6 +30,8 @@ router.put("/:id", async (req, res) => {
     res.status(500).json(err);
   }
 });
+
+router.get("/")
 
 
 // DELETE POST

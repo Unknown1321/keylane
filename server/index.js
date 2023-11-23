@@ -55,13 +55,6 @@ app.use(
   })
 );
 
-
-
-
-
-
-
-
 const storage = multer.diskStorage({
   destination: (req, file, callback) => {
     callback(null, "images");
@@ -86,9 +79,6 @@ app.use("/api/chats", chatRoute);
 app.use("/api/experiences", experiencesRoute);
 
 
-
-/* CODE FOR SOCKET APP MESSAGE */
-
 const server = http.createServer(app);
 import { Server } from 'socket.io';
 import http from "http";
@@ -105,8 +95,8 @@ io.on('connection', socket => {
 
   socket.on('message', async payload => {
     try {
-      const newMessage = new Chat({ text: payload }); // Create a new instance of the Chat model
-      await newMessage.save(); // Save the new message to the database
+      const newMessage = new Chat({ text: payload }); 
+      await newMessage.save();
       io.emit('message_receiver', newMessage);
     } catch (error) {
       console.error('Error saving message to database:', error);
