@@ -19,11 +19,10 @@ const getPost = async () => {
     const post = await response.json();
 
     const getLoggedInUser = () => {
-        const userData = JSON.parse(localStorage.getItem("userData"));
-        return userData;
-      };
+      const userData = JSON.parse(localStorage.getItem("userData"));
+      return userData;
+    };
 
-    // Function to get the logged-in username
     const getLoggedInUsername = () => {
       const loggedInUser = getLoggedInUser();
       return loggedInUser ? loggedInUser.username : null;
@@ -51,7 +50,7 @@ const getPost = async () => {
               <span class="singlePostDate">${new Date(
                 post.createdAt
               ).toDateString()}</span>
-              ${isAuthor ? renderEditButtons(post._id) : ""}
+              ${isAuthor ? renderEditButtons(post._id, post) : ""}
           </div>
           <p class="singlePostDesc">${post.desc}</p>
       </div>
@@ -67,7 +66,7 @@ const renderEditButtons = (postId, post) => {
   return `
     <div class="singlePostButton">
         <button onclick="redirectToEditPage('${postId}')">Edit</button>
-        <button onclick="deletePost('${postId}')">Delete</button>
+        <button onclick="deletePost('${postId}', '${post.username}')">Delete</button>
     </div>
   `;
 };
@@ -76,39 +75,35 @@ const redirectToAuthorPage = (username) => {
   window.location.href = `/?user=${username}`;
 };
 
-getPost();
-
 const redirectToEditPage = (postId) => {
-    window.location.href = `/write?post=${postId}`;
-  };
-  
+  window.location.href = `/write?post=${postId}`;
+};
 
-  const deletePost = async (postId, post) => {
-    const confirmation = confirm("Are you sure you want to delete this post?");
-  
-    if (confirmation) {
-      try {
-        
-        if (post.username === getLoggedInUser().username) {
-          const response = await fetch(`${postUrl}/${postId}`, {
-            method: "DELETE",
-            headers: {
-              "Content-Type": "application/json",
-            },
-          });
-  
-          if (response.ok) {
-            alert("Post deleted successfully");
-            window.location.href = "/";
-          } else {
-            console.error("Error deleting post:", response);
-          }
-        } else {
-          alert("You can only delete your post!");
+const deletePost = async (postId, username) => {
+  const confirmation = confirm("Are you sure you want to delete this post?");
+
+  if (confirmation) {
+    try {
+      const response = await fetch(
+        `${postUrl}/${postId}?username=${username}`,
+        {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
         }
-      } catch (error) {
-        console.error("Error deleting post:", error);
+      );
+
+      if (response.ok) {
+        alert("Post deleted successfully");
+        window.location.href = "/";
+      } else {
+        console.error("Error deleting post:", response);
       }
+    } catch (error) {
+      console.error("Error deleting post:", error);
     }
-  };
-  
+  }
+};
+
+getPost();
