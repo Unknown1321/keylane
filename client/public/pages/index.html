@@ -2,7 +2,6 @@
 <html>
 <head>
     <title>Keylane</title> 
-    <!-- Include your CSS files here -->
     <link rel="stylesheet" type="text/css" href="style/home.css"> 
     <link rel="stylesheet" type="text/css" href="style/header.css"> 
     <link rel="stylesheet" type="text/css" href="style/sidebar.css">
@@ -12,13 +11,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 
 
-    <!-- Include additional CSS or JavaScript files if needed -->
 </head>
 <body>
     <div id="navbar"></div>
 
 
-    <!-- Add the header HTML structure here -->
     <div class="header">
         <div class="headerTitles">
             <span class="headerTitleSm">Finished Tasks</span>
@@ -31,12 +28,9 @@
         />
     </div>
 
-     <!-- Container for posts -->
      <div class="posts" id="postsContainer">
-        <!-- Assuming this is inside your loop that iterates over fetched posts -->
 
     <div class="postInfo">
-        <!-- Use Link component for navigation -->
         <a href={`/posts/${post._id}`} class="link">
             <span class="postTitle">{post.title}</span>
         </a>
@@ -49,7 +43,6 @@
 
     </div>
 
-    <!-- Include the sidebar HTML structure here -->
     <div class="sidebar">
         <div class="sidebarItem">
             <span class="sidebarTitle">ABOUT US</span>
@@ -77,8 +70,6 @@
         </div>
     </div>
     
-
-    <!-- Include your JavaScript file here -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
     <script>
 
@@ -88,10 +79,8 @@
     const handleCategoriesResponse = (categories) => {
     const categoryList = document.getElementById('categoryList');
 
-    // Clear existing list items
     categoryList.innerHTML = '';
 
-    // Loop through categories and create list items
     categories.forEach(category => {
         const listItem = document.createElement('li');
         listItem.className = 'sidebarListItem';
@@ -120,11 +109,6 @@ const getCategories = async () => {
 
 getCategories();
 
-
-
-
-
-    
     const postsFetch = 'http://localhost:5000/api/posts';
 
     async function fetchPosts() {
@@ -146,7 +130,6 @@ getCategories();
                 const postElement = document.createElement("div");
                 postElement.className = "post";
 
-                // Create the image element if there is a photo
                 if (post.photo) {
                     const imgElement = document.createElement("img");
                     imgElement.className = "postImg";
@@ -158,23 +141,21 @@ getCategories();
                 const postInfoElement = document.createElement("div");
                 postInfoElement.className = "postInfo";
 
-                // Create the link element for navigation
                 const linkElement = document.createElement("a");
                 linkElement.href = `/posts/${post._id}`;
                 linkElement.className = "link";
 
-                // Create the title element
                 const titleElement = document.createElement("span");
                 titleElement.className = "postTitle";
                 titleElement.textContent = post.title;
 
-                // Append title to link
+                
                 linkElement.appendChild(titleElement);
 
-                // Append link to post info
+                
                 postInfoElement.appendChild(linkElement);
 
-                // Create categories element
+               
                 const categoriesElement = document.createElement("div");
                 categoriesElement.className = "postCats";
                 const categoriesSpan = document.createElement("span");
@@ -182,23 +163,23 @@ getCategories();
                 categoriesSpan.textContent = post.categories;
                 categoriesElement.appendChild(categoriesSpan);
 
-                // Create date element
+                
                 const dateElement = document.createElement("span");
                 dateElement.className = "postDate";
                 dateElement.textContent = new Date(post.createdAt).toDateString();
 
-                // Create description element
+                
                 const descElement = document.createElement("p");
                 descElement.className = "postDesc";
                 descElement.textContent = post.desc;
 
-                // Append everything to post element
+              
                 postInfoElement.appendChild(categoriesElement);
                 postInfoElement.appendChild(dateElement);
                 postElement.appendChild(postInfoElement);
                 postElement.appendChild(descElement);
 
-                // Append post element to container
+               
                 postsContainer.appendChild(postElement);
                 
             });
@@ -207,9 +188,38 @@ getCategories();
         }
     }
 
-    // Fetch posts when the page loads
+    
     fetchPosts();
+
+    
+    const fetchAndDisplayPosts = async () => {
+           
+            const urlParams = new URLSearchParams(window.location.search);
+            const username = urlParams.get('user');
+
+           
+            let apiUrl = 'http://localhost:5000/api/posts';
+            if (username) {
+                apiUrl += `?user=${username}`;
+            }
+
+            try {
+                const response = await fetch(apiUrl);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                const data = await response.json();
+                renderPosts(data);
+            } catch (error) {
+                console.error('Error fetching posts:', error);
+            }
+        };
+
+        
+        fetchAndDisplayPosts();
+
 </script>
+<script src="/pages/login.js"></script>
 <script src="/pages/main.js"></script>
     
 </body>

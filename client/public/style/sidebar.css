@@ -1,71 +1,70 @@
 .sidebar {
-    /* Define the fixed position */
-    position: fixed;
-    top: 0; /* Adjust as needed to control the vertical placement */
-    right: 0; /* This places it on the right side of the viewport */
-    height: 100%; /* Make it take the full height of the viewport */
-    width: 300px; /* Adjust the width as needed */
-    background-color: #fdfbfb;
-    border-radius: 10px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    overflow-y: auto; /* Add scrollbars if the content is taller than the sidebar */
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 300px;
+  background-color: #fdfbfb;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-y: auto;
 }
-  
-  .sidebarItem {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .sidebarTitle {
-    margin: 10px;
-    padding: 5px;
-    width: 80%;
-    border-top: solid 1px #a7a4a4;
-    border-bottom: solid 1px #a7a4a4;
-    text-align: center;
-    font-family: "Varela Round", sans-serif;
-    font-size: 12px;
-    line-height: 19px;
-    color: #222222;
-    font-weight: 600;
-  }
-  
-  .sidebarItem > img {
-    margin-top: 15px;
-    width: 300px;
-    height: 300px;
-  }
-  
-  .sidebarItem > p {
-    padding: 10px;
-  }
-  
-  .sidebarList {
-    list-style-type: none;
-  }
-  
-  .sidebarListItem {
-    display: block;
-    cursor: pointer;
-  }
-  
-  .sidebarSocial {
-    margin-top: 15px;
-    width: 250px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  .sidebarIcon {
-    font-size: 16px;
-    margin-left: 10px;
-  }
 
-  a {
-    text-decoration: none;
-    color: black;
-  }
+.sidebarItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.sidebarTitle {
+  margin: 10px;
+  padding: 5px;
+  width: 80%;
+  border-top: solid 1px #a7a4a4;
+  border-bottom: solid 1px #a7a4a4;
+  text-align: center;
+  font-family: "Varela Round", sans-serif;
+  font-size: 12px;
+  line-height: 19px;
+  color: #222222;
+  font-weight: 600;
+}
+
+.sidebarItem > img {
+  margin-top: 15px;
+  width: 300px;
+  height: 300px;
+}
+
+.sidebarItem > p {
+  padding: 10px;
+}
+
+.sidebarList {
+  list-style-type: none;
+}
+
+.sidebarListItem {
+  display: block;
+  cursor: pointer;
+}
+
+.sidebarSocial {
+  margin-top: 15px;
+  width: 250px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sidebarIcon {
+  font-size: 16px;
+  margin-left: 10px;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}

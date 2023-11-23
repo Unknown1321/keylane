@@ -4,6 +4,7 @@ import bcrypt from "bcrypt";
 
 const router = Router();
 
+
 //REGISTER
 router.post("/register", async (req, res) => {
   try {
@@ -23,14 +24,20 @@ router.post("/register", async (req, res) => {
   }
 });
 
-//LOGIN
+// LOGIN
 router.post("/login", async (req, res) => {
   try {
     const user = await User.findOne({ username: req.body.username });
-    !user && res.status(400).json("Wrong credentials!");
+    
+    if (!user) {
+      return res.status(400).json("Wrong credentials!");
+    }
 
     const validated = await bcrypt.compare(req.body.password, user.password);
-    !validated && res.status(400).json("Wrong credentials!");
+    
+    if (!validated) {
+      return res.status(400).json("Wrong credentials!");
+    }
 
     const { password, ...others } = user._doc;
     res.status(200).json(others);
@@ -39,14 +46,17 @@ router.post("/login", async (req, res) => {
   }
 });
 
+
 router.get("/login", (req, res) => {
   const auth = !!req.session.user;
   res.status(200).send({ auth, user: req.session.user });
 });
 
-router.get("/logout", (req, res) => {
-  req.session.destroy();
-  res.status(200).send({ message: "you are logged out" });
+router.post('/logout', (req, res) => {
+  req.session.destroy();  
+  res.json({ message: 'Logout successful' });
 });
+
+
 
 export default router;

@@ -1,125 +1,150 @@
 <style>
-.top {
-  width: 100%;
-  height: 50px;
-  background-color: white;
-  position: sticky;
-  top: 0;
-  display: flex;
-  align-items: center;
-  z-index: 999;
-  font-family: "Josefin Sans", sans-serif;
-}
+  .top {
+    width: 100%;
+    height: 50px;
+    background-color: white;
+    position: sticky;
+    top: 0;
+    display: flex;
+    align-items: center;
+    z-index: 999;
+    font-family: "Josefin Sans", sans-serif;
+  }
 
-.topLeft,
-.topRight {
-  flex: 3;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+  .topLeft,
+  .topRight {
+    flex: 3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 
-.topIcon {
-  font-size: 20px;
-  margin-right: 10px;
-  color: #444;
-  cursor: pointer;
-}
+  .topIcon {
+    font-size: 20px;
+    margin-right: 10px;
+    color: #444;
+    cursor: pointer;
+  }
 
-.topCenter {
-  flex: 6;
-}
+  .topCenter {
+    flex: 6;
+  }
 
-.topList {
-  display: flex;
-  justify-content: center;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
+  .topList {
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
 
-.topListItem {
-  margin-right: 20px;
-  font-size: 18px;
-  font-weight: 300;
-  cursor: pointer;
-}
+  .topListItem {
+    margin-right: 20px;
+    font-size: 18px;
+    font-weight: 300;
+    cursor: pointer;
+  }
 
-.topListItem:hover{
+  .topListItem:hover {
     color: gray;
-}
+  }
 
-.topImg {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  object-fit: cover;
-  margin-right: 15px;
-  cursor: pointer;
-}
+  .topImg {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 15px;
+    cursor: pointer;
+  }
 
-.topSearchIcon {
-  font-size: 18px;
-  color: #666;
-  cursor: pointer;
-}
+  .topSearchIcon {
+    font-size: 18px;
+    color: #666;
+    cursor: pointer;
+  }
 
-.link {
+  .link {
     text-decoration: none;
     color: inherit;
   }
-
 </style>
 
 <div class="top">
-    <div class="topLeft">
-        <i class="topIcon fab fa-facebook-square"></i>
-        <i class="topIcon fab fa-twitter-square"></i>
-        <i class="topIcon fab fa-pinterest-square"></i>
-        <i class="topIcon fab fa-instagram-square"></i>
-    </div>
-    <div class="topCenter">
-        <ul class="topList">
-            <li class="topListItem">
-                <a class="link" href="/">HOME</a>
-            </li>
-            <li class="topListItem">
-                <a class="link" href="/message">TODAYS MESSAGE</a>
-            </li>
-            <li class="topListItem">
-                <a class="link" href="/todo">TO-DO</a>
-            </li>
-            <li class="topListItem">
-                <a class="link" href="/about">ABOUT</a>
-            </li>
-            <li class="topListItem">
-                <a class="link" href="/contact">CONTACT</a>
-            </li>
-            <li class="topListItem">
-                <a class="link" href="/write">WRITE</a>
-            </li>
-            <li class="topListItem">
-              <a class="link" href="/calculation">CALCULATE</a>
-          </li>
-            <li class="topListItem">
-                <a class="link" href="/" style="display: none;" onclick="handleLogout()">LOGOUT</a>
-            </li>
-        </ul>
-    </div>
-    <div class="topRight">
-        <!-- Include user profile image if user is logged in -->
-        <a href="/settings">
-            <img class="topImg" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/User_icon_2.svg/330px-User_icon_2.svg.png" alt="">
-        </a>
-        <!-- Include login/register links if user is not logged in -->
-        <ul class="topList">
-            <li class="topListItem">
-                <a class="link" href="/login">LOGIN</a>
-            </li>
-            <li class="topListItem">
-                <a class="link" href="/register">REGISTER</a>
-            </li>
-        </ul>
-        <i class="topSearchIcon fas fa-search"></i>
-    </div>
+  <div class="topLeft">
+    <i class="topIcon fab fa-facebook-square"></i>
+    <i class="topIcon fab fa-twitter-square"></i>
+    <i class="topIcon fab fa-pinterest-square"></i>
+    <i class="topIcon fab fa-instagram-square"></i>
+  </div>
+  <div class="topCenter">
+    <ul class="topList">
+      <li class="topListItem">
+        <a class="link" href="/">HOME</a>
+      </li>
+      <li class="topListItem">
+        <a class="link" href="/message">TODAYS MESSAGE</a>
+      </li>
+      <li class="topListItem">
+        <a class="link" href="/todo">TO-DO</a>
+      </li>
+      <li class="topListItem">
+        <a class="link" href="/about">ABOUT</a>
+      </li>
+      <li class="topListItem">
+        <a class="link" href="/contact">CONTACT</a>
+      </li>
+      <li class="topListItem">
+        <a class="link" href="/write">WRITE</a>
+      </li>
+      <li class="topListItem">
+        <a class="link" href="/calculation">CALCULATE</a>
+      </li>
+    </ul>
+  </div>
+  <div class="topRight">
+    <a href="/settings">
+      <img
+        class="topImg"
+        src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/User_icon_2.svg/330px-User_icon_2.svg.png"
+        alt=""
+      />
+    </a>
+    <ul class="topList">
+        <li class="topListItem" id="loginButton">
+          <a class="link" href="/login">LOGIN</a>
+        </li>
+        <li class="topListItem" id="registerButton">
+          <a class="link" href="/register">REGISTER</a>
+        </li>
+        <li class="topListItem" id="logoutButton">
+          <a class="link" href="#" onclick="handleLogout()">LOGOUT</a>
+        </li>
+      </ul>
+    <i class="topSearchIcon fas fa-search"></i>
+  </div>
 </div>
+
+<script>
+  const handleLogout = async () => {
+    try {
+      const response = await fetch("http://localhost:5000/api/auth/logout", {
+        method: "POST",
+        credentials: "include",
+      });
+
+      if (response.ok) {
+        localStorage.removeItem("userData");
+        window.location.href = "/login";
+      } else {
+        console.error("Logout failed");
+      }
+    } catch (error) {
+      console.error("Error during logout:", error);
+    }
+  };
+</script>
+
+<script src="/pages/login.js"></script>
+<script src="/pages/main.js"></script>
+

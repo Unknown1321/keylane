@@ -1,72 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login</title>
-    <link rel="stylesheet" type="text/css" href="style/login.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-
-</head>
-<body>
-
+    <link rel="stylesheet" type="text/css" href="style/login.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+  </head>
+  <body>
     <div id="navbar"></div>
 
-
     <div class="login">
-        <span class="loginTitle">Login</span>
-        <form class="loginForm" onsubmit="handleSubmit(event)">
-            <label for="username">Username</label>
-            <input
-                type="text"
-                class="loginInput"
-                placeholder="Enter your username..."
-                id="username"
-            />
-            <label for="password">Password</label>
-            <input
-                type="password"
-                class="loginInput"
-                placeholder="Enter your password..."
-                id="password"
-            />
-            <button class="loginButton" type="submit" >
-                Login
-            </button>
-        </form>
-        <button class="loginRegisterButton">
-            <a class="link" href="/register">Register</a>
-        </button>
+      <span class="loginTitle">Login</span>
+      <form class="loginForm" onsubmit="handleSubmitLogin(event)">
+        <label for="username">Username</label>
+        <input
+          type="text"
+          class="loginInput"
+          placeholder="Enter your username..."
+          id="username"
+        />
+        <label for="password">Password</label>
+        <input
+          type="password"
+          class="loginInput"
+          placeholder="Enter your password..."
+          id="password"
+        />
+        <button class="loginButton" type="submit">Login</button>
+      </form>
+      <button class="loginRegisterButton">
+        <a class="link" href="/register">Register</a>
+      </button>
     </div>
 
-    <script>
-        const handleSubmit = async (e) => {
-            e.preventDefault();
-            // Handle form submission using JavaScript
-            const username = document.getElementById("username").value;
-            const password = document.getElementById("password").value;
-
-            // Send a request to the login API endpoint
-            const response = await fetch("http://localhost:5000/api/auth/login", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                    username: username,
-                    password: password,
-                }),
-            });
-
-            if (response.ok) {
-                const data = await response.json();
-                console.log("Logged in")
-            } else {
-                console.log("Login failed")
-            }
-        };
-    </script>
-
-<script src="/pages/main.js"></script>
-</body>
+    <script src="/pages/login.js"></script>
+    <script src="/pages/main.js"></script>
+    
+  </body>
 </html>

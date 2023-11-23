@@ -1,37 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Write</title>
-    <link rel="stylesheet" type="text/css" href="style/write.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-
-</head>
-<body>
+    <link rel="stylesheet" type="text/css" href="style/write.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+  </head>
+  <body>
     <div id="navbar"></div>
 
     <div class="write">
-        <form class="writeForm" onsubmit="handleSubmit(event)">
-            <div class="writeFormGroup">
-                <label for="fileInput">
-                    <i class="writeIcon fas fa-plus"></i>
-                </label>
-                <input type="file" id="fileInput" style="display: none;" onchange="setFile(event)"/>
-                <input type="text" placeholder="Title of your task" class="writeInput" autofocus="true" onchange="setTitle(event)"/>
-            </div>
-            <div class="writeFormGroup">
-                <textarea placeholder="Which categories..." class="writeInput writeCategories" onchange="setCategories(event)"></textarea>
-            </div>
-            <div class="writeFormGroup">
-                <textarea placeholder="Write what your task was about..." class="writeInput writeText" onchange="setDesc(event)"></textarea>
-            </div>
-            <button class="writeSubmit" type="submit">Publish</button>
-        </form>
+      <form class="writeForm" onsubmit="handleSubmitWrite(event)">
+        <div class="writeFormGroup">
+          <label for="fileInput">
+            <i class="writeIcon fas fa-plus"></i>
+          </label>
+          <input
+            type="file"
+            id="fileInput"
+            style="display: none"
+            onchange="setFile(event)"
+          />
+          <input
+            type="text"
+            placeholder="Title of your task"
+            class="writeInput"
+            autofocus="true"
+            onchange="setTitle(event)"
+          />
+        </div>
+        <div class="writeFormGroup">
+          <textarea
+            placeholder="Which categories..."
+            class="writeInput writeCategories"
+            onchange="setCategories(event)"
+          ></textarea>
+        </div>
+        <div class="writeFormGroup">
+          <textarea
+            placeholder="Write what your task was about..."
+            class="writeInput writeText"
+            onchange="setDesc(event)"
+          ></textarea>
+        </div>
+        <button class="writeSubmit" type="submit">Publish</button>
+      </form>
     </div>
-    
+
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script src="/pages/write.js"></script>
+    <script src="/pages/login.js"></script>
     <script src="/pages/main.js"></script>
-</body>
+    <script src="/pages/write.js"></script>
+  </body>
 </html>

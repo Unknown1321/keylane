@@ -1,54 +1,47 @@
-/* about.css */
 
 .about-container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-    text-align: center;
-  }
-  
-  h1 {
-    font-size: 2rem;
-    margin-bottom: 20px;
-  }
-  
-  p, li {
-    font-size: 1.2rem;
-    margin-bottom: 15px;
-    line-height: 1.6;
-    color: #090808; 
-  }
-  
-  ul {
-    list-style-type: disc;
-    margin-left: 20px;
-  }
-  
-  li {
-    font-size: 1.2rem;
-    margin-bottom: 5px;
-  }
-  
-  /* Add space between lines */
-  .about-container p,
-  .about-container ul {
-    margin-bottom: 20px;
-  }
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center;
+}
 
- 
-  
-  /* Add a black background color to the top navigation bar */
+h1 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+p,
+li {
+  font-size: 1.2rem;
+  margin-bottom: 15px;
+  line-height: 1.6;
+  color: #090808;
+}
+
+ul {
+  list-style-type: disc;
+  margin-left: 20px;
+}
+
+li {
+  font-size: 1.2rem;
+  margin-bottom: 5px;
+}
+
+.about-container p,
+.about-container ul {
+  margin-bottom: 20px;
+}
+
 .searchAbout {
   overflow: hidden;
   margin-top: 40px;
 }
 
-/* Style the search box inside the navigation bar */
-.searchAbout input[type=text] {
-      width: 25%;
-      padding: 6px;
-      margin-right: 16px;
-      font-size: 17px;
+.searchAbout input[type="text"] {
+  width: 25%;
+  padding: 6px;
+  margin-right: 16px;
+  font-size: 17px;
 }
-
-  

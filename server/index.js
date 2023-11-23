@@ -1,4 +1,6 @@
 import express from 'express';
+import session from 'express-session';
+import { default as connectMongoDBSession} from 'connect-mongodb-session';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import { dirname } from 'path';
@@ -14,6 +16,7 @@ import chatRoute from './routes/chats.js';
 import experiencesRoute from './routes/experiences.js';
 import multer from 'multer';
 
+const MongoDBStore = connectMongoDBSession(session);
 const app = express();
 
 
@@ -30,6 +33,34 @@ mongoose.connect(process.env.MONGO_URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 }).then(console.log("Connected to MongoDB")).catch((err)=> console.log(err));
+
+const store = new MongoDBStore({
+  uri: process.env.MONGO_URL,
+  collection: 'mySessions'
+});
+
+app.use(
+  session({
+    secret: 'your-secret-key',
+    resave: false,
+    saveUninitialized: false,
+    store: store
+  })
+);
+
+app.use(
+  cors({
+    origin: 'http://localhost:8080',
+    credentials: true,
+  })
+);
+
+
+
+
+
+
+
 
 const storage = multer.diskStorage({
   destination: (req, file, callback) => {
@@ -53,6 +84,7 @@ app.use("/api/categories", categoryRoute);
 app.use("/api/todo", todoRoute);
 app.use("/api/chats", chatRoute);
 app.use("/api/experiences", experiencesRoute);
+
 
 
 /* CODE FOR SOCKET APP MESSAGE */

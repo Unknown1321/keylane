@@ -1,39 +1,34 @@
+let username = "";
+let email = "";
+let password = "";
 
-    
+function setUsername(value) {
+  username = value;
+}
 
-        let username = "";
-        let email = "";
-        let password = "";
+function setEmail(value) {
+  email = value;
+}
 
-        function setUsername(value) {
-            username = value;
-        }
+function setPassword(value) {
+  password = value;
+}
 
-        function setEmail(value) {
-            email = value;
-        }
+const handleSubmit = async (e) => {
+  e.preventDefault();
+  const errorSpan = document.getElementById("error");
+  errorSpan.textContent = "";
 
-        function setPassword(value) {
-            password = value;
-        }
+  const res = await axios.post("http://localhost:5000/api/auth/register", {
+    username,
+    email,
+    password,
+  });
 
-        const handleSubmit = async (e) => {
-            e.preventDefault();
-            const errorSpan = document.getElementById("error");
-            errorSpan.textContent = "";
-
-             
-             const res = await axios.post("http://localhost:5000/api/auth/register", {
-               username,
-               email,
-               password,
-             });
- 
-        
-            const success = true;
-            if (success) {
-                window.location.href = "/login";
-            } else {
-                errorSpan.textContent = "Something went wrong!";
-            }
-        }
+  const success = true;
+  if (success) {
+    window.location.href = "/login";
+  } else {
+    errorSpan.textContent = "Something went wrong!";
+  }
+};

@@ -1,27 +1,28 @@
-h1, h2{
-    text-align: center;
-    color: black;
-    margin-bottom: -2%;
-    padding: 1rem;
-    position: relative;
-    
+h1,
+h2 {
+  text-align: center;
+  color: black;
+  margin-bottom: -2%;
+  padding: 1rem;
+  position: relative;
 }
 #totalTimeTable {
-    width: 50%;
-    border-collapse: collapse;
-    margin-left: 25%;
-    margin-top: 2%;
+  width: 50%;
+  border-collapse: collapse;
+  margin-left: 25%;
+  margin-top: 2%;
 }
 
-#totalTimeTable th, #totalTimeTable td {
-    padding: 15px;
-    text-align: center;
+#totalTimeTable th,
+#totalTimeTable td {
+  padding: 15px;
+  text-align: center;
 }
 
 #totalTimeTable th {
-    background-color: #e57a50;
+  background-color: #e57a50;
 }
 
 #totalTimeTable tbody tr:nth-child(even) {
-    background-color: #f2f2f2;
+  background-color: #f2f2f2;
 }

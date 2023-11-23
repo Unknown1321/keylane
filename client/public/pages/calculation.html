@@ -1,53 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Calculation</title>
-    <link rel="stylesheet" type="text/css" href="style/calculation.css">
-    <link rel="stylesheet" type="text/css" href="style/experience.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-
-</head>
-<body>
+    <link rel="stylesheet" type="text/css" href="style/calculation.css" />
+    <link rel="stylesheet" type="text/css" href="style/experience.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+  </head>
+  <body>
     <div id="navbar"></div>
 
     <h1>Hello team!</h1>
-    <h2>This is an overview over how many times each category is being used in our posts</h2>
-
+    <h2>
+      This is an overview over how many times each category is being used in our
+      posts
+    </h2>
 
     <table border="1" id="totalTimeTable">
-        <thead>
-            <tr>
-                <th>Category</th>
-                <th>Total Uses</th>
-            </tr>
-        </thead>
-        <tbody id="totalTimeBody">
-            <!-- Table body content will be added dynamically -->
-        </tbody>
+      <thead>
+        <tr>
+          <th>Category</th>
+          <th>Total Uses</th>
+        </tr>
+      </thead>
+      <tbody id="totalTimeBody"></tbody>
     </table>
 
     <div class="workExperience">
-        <h2>Add Category For Sidebar</h2>
-        <form class="workForm" onsubmit="handleSubmit(event)">
-            <label for="username"></label>
-            <input
-                type="text"
-                class="workInput"
-                placeholder="Enter name..."
-                id="name"
-            />
-       
-            <button class="workButton" type="submit">
-                Add Category
-            </button>
-        </form>
+      <h2>Add Category For Sidebar</h2>
+      <form class="workForm" onsubmit="handleSubmit(event)">
+        <label for="username"></label>
+        <input
+          type="text"
+          class="workInput"
+          placeholder="Enter name..."
+          id="name"
+        />
+
+        <button class="workButton" type="submit">Add Category</button>
+      </form>
     </div>
 
-   
     <script src="/pages/categories.js"></script>
     <script src="/pages/main.js"></script>
-
-</body>
+  </body>
 </html>

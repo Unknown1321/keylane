@@ -1,51 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="style/settings.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="style/settings.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
 
-
-    <!-- Include your other stylesheets or scripts if needed -->
     <title>Settings</title>
-</head>
-<body>
+  </head>
+  <body>
     <div id="navbar"></div>
 
     <div class="settings">
-        <div class="settingsWrapper">
-            <div class="settingsTitle">
-                <span class="settingsUpdateTitle">Update Your Account</span>
-            </div>
-            <form class="settingsForm" onsubmit="handleSubmit(event)">
-                <label>Username</label>
-                <input
-                    type="text"
-                    value="{user.username}"
-                    onchange="setUsername(event.target.value)"
-                />
-                <label>Email</label>
-                <input
-                    type="email"
-                    value="{user.email}"
-                    onchange="setEmail(event.target.value)"
-                />
-                <label>Password</label>
-                <input
-                    type="password"
-                    onchange="setPassword(event.target.value)"
-                />
-                <button class="settingsSubmit" type="submit">Update</button>
-                <span
-                    style="color: green; text-align: center; margin-top: 20px; display: ${success ? 'block' : 'none'}">
-                    Profile has been updated...
-                </span>
-            </form>
+      <div class="settingsWrapper">
+        <div class="settingsTitle">
+          <span class="settingsUpdateTitle">Update Your Account</span>
         </div>
-        
-        <script src="/pages/settings.js"></script>
-        <script src="/pages/main.js"></script>
+        <form class="settingsForm" onsubmit="handleSubmitSettings(event)">
+          <label>Username</label>
+          <input
+            type="text"
+            value=""
+            placeholder="Enter new username"
+            onchange="setUsername(event.target.value)"
+            id="username"
+          />
+
+          <label>Email</label>
+          <input
+            type="email"
+            value=""
+            placeholder="Enter new email"
+            onchange="setEmail(event.target.value)"
+            id="email"
+          />
+
+          <label>Password</label>
+          <input
+            type="password"
+            placeholder="Enter new password"
+            onchange="setPassword(event.target.value)"
+            id="password"
+          />
+
+          <button class="settingsSubmit" type="submit">Update</button>
+        </form>
+      </div>
+
+      <script src="/pages/settings.js"></script>
+      <script src="/pages/login.js"></script>
+      <script src="/pages/main.js"></script>
     </div>
-</body>
+  </body>
 </html>

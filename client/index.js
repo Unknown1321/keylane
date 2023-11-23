@@ -1,7 +1,7 @@
 import express from "express";
 import { io } from 'socket.io-client';
 import path from "path";
-import axis from 'axios';
+import axios from 'axios';
 
 const app = express();
 const socket = io('http://localhost:5000'); // Server URL for socket 
