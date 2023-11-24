@@ -75,6 +75,7 @@ app.get("/settings", (req, res) => {
   res.sendFile(path.resolve("public/pages/settings.html"));
 });
 
+
 const PORT = 8080;
 
 app.listen(PORT, (error) => {
