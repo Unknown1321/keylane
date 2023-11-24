@@ -1,8 +1,6 @@
 import { Router } from "express";
 import User from "../models/User.js"; 
 import Post from "../models/Post.js"; 
-import bcrypt from "bcrypt";
-import { authenticateToken } from '../middleware/authToken.js';
 
 const router = Router();
 
